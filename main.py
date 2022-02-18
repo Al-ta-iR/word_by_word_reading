@@ -2,7 +2,7 @@ import eel
 
 
 eel.init('web')
-eel.start('index.html', size = (600, 600))
+eel.start('index.html', size = (750, 600))
 
 @eel.expose
 def call_in_js(x):
