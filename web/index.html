@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WbW Reader</title>
     <link rel="stylesheet" href="style.css">
     <script src="eel.js"></script>
 
@@ -13,29 +13,40 @@
 
     <div class="box">
         <form action="#">
-            <input type="open" id="open" value="Open">
+            <button id="open">Open</button>
             <p id="arrow_down">▼</p>
-            <input type="text" id="text">
+            <input type="text" id="word">
             <p id="arrow_up">▲</p>
-            <input type="speed" id="speed" placeholder="speed">
-            <input type="progress" id="progress" placeholder="progress">
-            <input type="play" id="play" value="Play">
-            <input type="pause" id="pause" value="Pause">
+            <input type="text" id="speed" placeholder="speed">
+            <input type="text" id="progress" placeholder="progress">
+            <p></p>
+            <button id="play">►⏸</button>
+            <!-- <input type="pause" id="pause" value="Pause"> -->
 
         </form>
 
     </div>
-    <!-- <script>
-        async function call() {
-            await eel.call_in_js("Hello, World")
+    <script>
+        async function display_reader() {
+            let speed = document.getElementById('speed').value;
+            let progress = document.getElementById('progress').value;
+            let word = await eel.reader(speed, progress)();
+            document.getElementById('word').innerHTM = word;
+        
+        // document.getElementById("play").onclick = display_reader(speed);
         }
-        call()
+        jQuery('#play').on('click', function() {
+            display_reader()
+        }
+        //     await eel.call_in_js("Hello, World")
+        // }
+        // call()
 
-        eel.expose(call_in_python)
-        function call_in_python(x) {
-            console.log(x);
-        }
-    </script> -->
+        // eel.expose(call_in_python)
+        // function call_in_python(x) {
+        //     console.log(x);
+        // }
+    </script>
 
 </body>
 </html>
