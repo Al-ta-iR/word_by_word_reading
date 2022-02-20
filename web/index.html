@@ -7,6 +7,7 @@
     <title>WbW Reader</title>
     <link rel="stylesheet" href="style.css">
     <script src="eel.js"></script>
+    <link rel="icon" type="image/png" href="/favicon.png"
 
 </head>
 <body>
@@ -19,7 +20,7 @@
             <p id="arrow_up">▲</p>
             <input type="text" id="speed" placeholder="speed">
             <input type="text" id="progress" placeholder="progress">
-            <p></p>
+            <br>
             <button id="play">►⏸</button>
             <!-- <input type="pause" id="pause" value="Pause"> -->
 
@@ -31,7 +32,7 @@
             let speed = document.getElementById('speed').value;
             let progress = document.getElementById('progress').value;
             let word = await eel.reader(speed, progress)();
-            document.getElementById('word').innerHTM = word;
+            document.getElementById('word').innerHTML = word;
         
         // document.getElementById("play").onclick = display_reader(speed);
         }
