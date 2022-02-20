@@ -6,6 +6,11 @@ import time
 eel.init('web')
 eel.start('index.html', size = (750, 600), mode = "firefox")
 
+
+def reader_file(one_word):
+    return one_word
+    
+
 @eel.expose
 def reader(speed=100, progress=0):
 
@@ -16,7 +21,7 @@ def reader(speed=100, progress=0):
     #     # print('Прочитано = ', count_read_words, end='')
     #     # progress = count_read_words * 100 / 50
     #     time.sleep(60 / speed)
-    #     return word
+    #     reader_file(word)
     #     # count_read_words += 1
 
     # speed = int(speed)
@@ -39,6 +44,12 @@ def reader(speed=100, progress=0):
 
     # eel.call_in_python("Hello from JS")
 
+    
+# if __name__ == '__main__':
+#     reader(speed, progress)
+
+# паузы предложений и абзацев
+# на старт, внимание, марш
 # форма
 # скорость
 # экран и размер экрана
