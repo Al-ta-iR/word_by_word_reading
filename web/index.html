@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WbW Reader</title>
     <link rel="stylesheet" href="style.css">
-    <script src="eel.js"></script>
-    <link rel="icon" type="image/png" href="/favicon.png"
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <!-- <script src="eel.js"></script> -->
+    <script type="text/javascript" src="eel.js"></script>
 
 </head>
 <body>
+
+    <!-- <script type="text/javascript" src="script.js"></script> -->
 
     <div class="box">
         <form action="#">
@@ -21,24 +24,30 @@
             <input type="text" id="speed" placeholder="speed">
             <input type="text" id="progress" placeholder="progress">
             <br>
-            <button id="play">►⏸</button>
+            <button id="play_btn">►⏸</button>
             <!-- <input type="pause" id="pause" value="Pause"> -->
 
         </form>
 
     </div>
+
     <script>
-        async function display_reader() {
+        let play_btn = document.querySelector("#play_btn")
+        play_btn.addEventListener("click", show_js)
+
+        async function show_js() {
             let speed = document.getElementById('speed').value;
             let progress = document.getElementById('progress').value;
-            let word = await eel.reader(speed, progress)();
+            let word = await eel.reader_python()();
             document.getElementById('word').innerHTML = word;
         
-        // document.getElementById("play").onclick = display_reader(speed);
+        // document.getElementById("play_btn").onclick = show_js(speed);
+        // }
+    
+        jQuery('#play_btn').on('click'), function() {
+            show_js()
         }
-        jQuery('#play').on('click', function() {
-            display_reader()
-        }
+        // show_js();
         //     await eel.call_in_js("Hello, World")
         // }
         // call()
@@ -46,7 +55,7 @@
         // eel.expose(call_in_python)
         // function call_in_python(x) {
         //     console.log(x);
-        // }
+        }
     </script>
 
 </body>

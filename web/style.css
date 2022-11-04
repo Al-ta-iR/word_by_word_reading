@@ -20,7 +20,7 @@ body {
     color: #115eb6;
 }
 
-#play, #speed, #open, #progress {
+#play_btn, #speed, #open, #progress {
     padding: 10px;
     margin: 10px;
     background-color: #252e38;
@@ -48,7 +48,7 @@ body {
     text-align: center;
 }
 
-#open, #play {
+#open, #play_btn {
     cursor: pointer;
     text-align: center;
     font-size: medium;
@@ -58,7 +58,7 @@ body {
     /* text-transform: uppercase; */
 }
 
-#play:hover, #open:hover {
+#play_btn:hover, #open:hover {
     color: #fff;
     background-color: #2285f5;
 }
