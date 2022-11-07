@@ -1,5 +1,6 @@
 # -*- coding: cp1251 -*-
 import eel
+import time
 
 
 eel.init('web')
@@ -7,23 +8,23 @@ eel.init('web')
 
 speed = 60
 progress = 0
-text_data = ''
+text_data = 'Там он влюбился в дочь коменданта гарнизона. Сослуживец Гринёва уже сватался к ней, но получил отказ'
 
 def open_file():
     global text_data
     # file = open('text.txt', encoding="utf-8")
     # read_data = file.read() # Считывает и возвращает указанное количество данных из файла (size)
-    text_data = 'Там он влюбился в дочь коменданта гарнизона. Сослуживец Гринёва уже сватался к ней, но получил отказ. Сослуживец поссорился с Гринёвым из-за девушки и на дуэли ранил его. Капитанская дочка выхаживала Гринёва и полюбила его. Гринёв хотел жениться на девушке, но его отец был против. Начался крестьянский бунт. Бунтовщики захватили гарнизон, убили капитана и хотели повесить Гринёва, но его узнал главарь бунтовщиков — как-то зимой он остался без тёплой одежды, и Гринёв подарил ему заячий тулуп. Гринёву пришлось оставить любимую и уехать. Вскоре он получил от неё письмо. Сослуживец, перешедший на сторону бунтовщиков, принуждал её к браку, и она просила о помощи.'
+    text_data = ''
     # return read_data
 
 @eel.expose
 def set_values(speed_val=100, progress_val=0):
     if speed_val == '' or speed_val == '0' or speed_val == 0:
-        speed_val = 50
+        speed_val = 200
     if progress_val == '':
         progress_val = 0
     global speed, progress
-    speed = int(60 / speed_val)
+    speed = 60 / int(speed_val)
     progress = int(progress_val)
     reader_python()
 
@@ -40,7 +41,7 @@ def reader_python():
     global speed, progress, text_data
     start_words = 'На старт! Внимание! Марш!'
     word_chooser(start_words)
-    # word_chooser(text_data)
+    word_chooser(text_data)
 
     # for word in per_word:
     #     # for word in line.split():
