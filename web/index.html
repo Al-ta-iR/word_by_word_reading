@@ -7,14 +7,9 @@
     <title>WbW Reader</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <!-- <script src="eel.js"></script> -->
     <script type="text/javascript" src="eel.js"></script>
-
 </head>
 <body>
-
-    <!-- <script type="text/javascript" src="script.js"></script> -->
-
     <div class="box">
         <form action="#">
             <button id="open">Open</button>
@@ -25,38 +20,13 @@
             <input type="text" id="progress" placeholder="progress">
             <br>
             <button id="play_btn">►⏸</button>
-            <!-- <input type="pause" id="pause" value="Pause"> -->
-
+            <!-- <div class="w3-light-green w3-round">
+                <div class="w3-container w3-round w3-blue" style="width:25%">25%</div>
+            </div> -->
         </form>
 
     </div>
-
-    <script>
-        let play_btn = document.querySelector("#play_btn")
-        play_btn.addEventListener("click", show_js)
-
-        async function show_js() {
-            let speed = document.getElementById('speed').value;
-            let progress = document.getElementById('progress').value;
-            let word = await eel.reader_python()();
-            document.getElementById('word').innerHTML = word;
-        
-        // document.getElementById("play_btn").onclick = show_js(speed);
-        // }
     
-        jQuery('#play_btn').on('click'), function() {
-            show_js()
-        }
-        // show_js();
-        //     await eel.call_in_js("Hello, World")
-        // }
-        // call()
-
-        // eel.expose(call_in_python)
-        // function call_in_python(x) {
-        //     console.log(x);
-        }
-    </script>
-
+    <script src="./script.js"></script>
 </body>
 </html>

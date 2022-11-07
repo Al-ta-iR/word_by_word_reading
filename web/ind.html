@@ -12,17 +12,43 @@
 
 </head>
 <body>
+    
+    <div class="box">
+        <form action="#">
+            <button id="open">Open</button>
+            <p id="arrow_down">▼</p>
+            <input type="text" id="word">
+            <p id="arrow_up">▲</p>
+            <input type="text" id="speed" placeholder="speed">
+            <input type="text" id="progress" placeholder="progress">
+            <br>
+            <button id="play_btn">►⏸</button>
+            <!-- <input type="pause" id="pause" value="Pause"> -->
+        </form>
+    </div>
 
     <script>
         async function call(){
             await eel.call_in_js("Hello")
         }
-        call();
 
         eel.expose(call_in_python);
         function call_in_python(x){
             console.log(x);
         }
+
+
+        async function show_js() {
+            let speed = document.getElementById('speed').value;
+            let progress = document.getElementById('progress').value;
+            let word = await eel.reader_python()();
+            document.getElementById('word').innerHTML = word;
+        }
+        
+        jQuery('#play_btn').on('click'), function() {
+            call();
+        }
+
     </script>
 
 </body>
