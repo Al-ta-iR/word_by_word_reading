@@ -20,7 +20,7 @@ def open_file():
 @eel.expose
 def set_values(speed_val=100, progress_val=0):
     if speed_val == '' or speed_val == '0' or speed_val == 0:
-        speed_val = 60
+        speed_val = 50
     if progress_val == '':
         progress_val = 0
     global speed, progress
@@ -29,26 +29,19 @@ def set_values(speed_val=100, progress_val=0):
     reader_python()
 
 def word_chooser(text):
-    print(text)
     global speed, progress, text_data
     per_word = text.split()
     for word in per_word:
-        # print('Прочитано = ', count_read_words, end='')
-        # progress = count_read_words * 100 / 50
-        # eel.sleep(speed)
         time.sleep(speed)
         print(word)
-        # return word
         eel.showJs(word)
-        # count_read_words += 1
     
 @eel.expose
 def reader_python():
     global speed, progress, text_data
-    eel.showJs('Yeeeeeeeee')
     start_words = 'На старт! Внимание! Марш!'
     word_chooser(start_words)
-    word_chooser(text_data)
+    # word_chooser(text_data)
 
     # 
 

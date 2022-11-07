@@ -16,6 +16,6 @@ async function call_in_python() {
 
 eel.expose(showJs);
 function showJs(word){
-    console.log(word);
-    document.getElementById('word').innerHTML = word;
+    document.getElementById('word').value = word;
+    // console.log(word);
 }
