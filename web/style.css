@@ -33,6 +33,7 @@ body {
 
 #word {
     padding: 15px;
+    text-align: center;
     margin: 1px;
     background-color: #161d24;
     color: #adccf0;

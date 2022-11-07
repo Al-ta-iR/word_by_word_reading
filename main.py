@@ -1,12 +1,11 @@
 # -*- coding: cp1251 -*-
 import eel
-import time
 
 
 eel.init('web')
 
 
-speed = 0.1
+speed = 60
 progress = 0
 text_data = ''
 
@@ -32,7 +31,7 @@ def word_chooser(text):
     global speed, progress, text_data
     per_word = text.split()
     for word in per_word:
-        time.sleep(speed)
+        eel.sleep(speed)
         print(word)
         eel.showJs(word)
     
@@ -42,8 +41,6 @@ def reader_python():
     start_words = 'На старт! Внимание! Марш!'
     word_chooser(start_words)
     # word_chooser(text_data)
-
-    # 
 
     # for word in per_word:
     #     # for word in line.split():
