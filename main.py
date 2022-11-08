@@ -36,14 +36,14 @@ def open_file():
 
 @eel.expose
 def play_reading(flag_play):
+    global flag
+    print(flag, flag_play)
     if flag_play:
-        global flag
         flag = 1
-        print(flag)
+        print('play_reading if', flag, flag_play)
     else:
-        global flag
         flag = 0
-        print(flag)
+        print('play_reading else', flag, flag_play)
 
 
 @eel.expose
@@ -77,7 +77,7 @@ def word_chooser(text, speed_ratio=1):
                 continue
             eel.showWords(text[word_id])
             eel.sleep(speed)
-            eel.showWords('') # данные 2 строки добавлены для мерцания слов при смене
+            eel.showWords('') # данные 2 строки добавлены для мерцания слов при их смене
             eel.sleep(speed * 0.12)
     else:
         eel.sleep(1)

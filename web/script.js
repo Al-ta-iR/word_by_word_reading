@@ -2,10 +2,17 @@ let flagPlay = 0
 
 function main() {
     const playBtn = document.querySelector("#play_btn")
-    setFlag()
-    playBtn.addEventListener(('click'), () => call_in_python())
-    // const openBtn = document.querySelector("#open")
-    // playBtn.addEventListener(('click'), () => select())
+    playBtn.addEventListener(('click'), () => {
+        setFlag();
+        if (flagPlay == 0) {
+            call_in_python();
+            console.log('main 1', flagPlay);
+        } else {
+            playReading();
+            console.log('main 2', flagPlay);
+        }
+        console.log('main 3', flagPlay);
+    })
 }
 
 main()
@@ -14,13 +21,12 @@ async function call_in_python() {
     const speed = document.getElementById('speed').value;
     const progress = document.getElementById('progress').value;
     const word = await eel.set_values(speed, progress)();
-    document.getElementById('word').innerHTML = word;
-    playReading()
     // console.log(word)
 }
 
 eel.expose(showWords);
 function showWords(word){
+    playReading()
     document.getElementById('word').value = word;
     // console.log(word);
 }
@@ -32,19 +38,19 @@ function showProgress(progress){
     // console.log(word);
 }
 
-async function setFlag(){
-    document.querySelector("#play_btn")
+function setFlag(){
     if (flagPlay == 1){
         flagPlay = 0
     } else {
         flagPlay = 1
     }
+    console.log('setFlag', flagPlay)
 }
 
 eel.expose(playReading);
 async function playReading(){
     eel.play_reading(flagPlay)();
-    console.log(flagPlay)
+    console.log('playReading', flagPlay)
 }
 
 // async function select(){
