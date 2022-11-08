@@ -1,59 +1,87 @@
-# -*- coding: cp1251 -*-
+# -*- coding:utf-8 -*-
 import eel
-import time
+# import tkinter 
+# import tkinter.filedialog as filedialog
+
 
 
 eel.init('web')
 
-
-speed = 60
+speed = 400
 progress = 0
-text_data = 'Там он влюбился в дочь коменданта гарнизона. Сослуживец Гринёва уже сватался к ней, но получил отказ'
+text_data = ''
+
+# @eel.expose
+# def selectFolder():
+#     print("Here")
+#     root = tkinter.Tk()
+#     root.attributes("-topmost", True)
+#     root.withdraw()
+#     directory_path = filedialog.askdirectory()
+#     print(directory_path)
 
 def open_file():
+    '''Open file'''
     global text_data
-    # file = open('text.txt', encoding="utf-8")
-    # read_data = file.read() # Считывает и возвращает указанное количество данных из файла (size)
-    text_data = ''
-    # return read_data
+    try:
+        file = open('text.txt', encoding="utf-8")
+        text = file.read()
+        text_data = text.split()
+    except:
+        eel.sleep(0.5)
+        eel.showWords('Р”РѕР±Р°РІСЊС‚Рµ С„Р°Р№Р» `text.txt` РІ С‚РµРєСѓС‰РёР№ СЂРµРїРѕР·РёС‚РѕСЂРёР№')
+        eel.sleep(9.5)
+        open_file()
+
+@eel.expose
+def play_reading(flag):
+    if flag == 1:
+        return 1
+    else:
+        eel.sleep(1)
 
 @eel.expose
 def set_values(speed_val=100, progress_val=0):
+    '''Set speed and progress'''
     if speed_val == '' or speed_val == '0' or speed_val == 0:
-        speed_val = 200
+        speed_val = 400
     if progress_val == '':
         progress_val = 0
     global speed, progress
     speed = 60 / int(speed_val)
     progress = int(progress_val)
+    open_file()
+    # text_word_counter = len(text_data)
     reader_python()
 
-def word_chooser(text):
+def word_chooser(text, speed_ratio=1):
+    '''Read in HTML'''
     global speed, progress, text_data
-    per_word = text.split()
-    for word in per_word:
+    text_words_counter = len(text)
+    start_progress = int(progress / 100 * text_words_counter)
+    for word_id in range(start_progress, text_words_counter):
+
+        latest_symbol = text[word_id][-1]
+        if latest_symbol in '.!?;':
+            eel.showWords(text[word_id])
+            eel.sleep(speed * 1.8 * speed_ratio * 0.88)
+            progress = 100 / text_words_counter * (word_id + 1)
+            eel.showProgress(round(progress, 1))
+            continue
+        eel.showWords(text[word_id])
         eel.sleep(speed)
-        print(word)
-        eel.showJs(word)
-    
+        eel.showWords('') # РґР°РЅРЅС‹Рµ 2 СЃС‚СЂРѕРєРё РґРѕР±Р°РІР»РµРЅС‹ РґР»СЏ РјРµСЂС†Р°РЅРёСЏ СЃР»РѕРІ РїСЂРё СЃРјРµРЅРµ
+        eel.sleep(speed * 0.12)
+
 @eel.expose
 def reader_python():
+    '''Logic router'''
     global speed, progress, text_data
-    start_words = 'На старт! Внимание! Марш!'
-    word_chooser(start_words)
+    start_words = 'в–є РџСЂРёРіРѕС‚РѕРІРёС‚СЊСЃСЏ! Р’РЅРёРјР°РЅРёРµ! РњР°СЂС€!'.split()
+    for word in start_words:
+        eel.showWords(word)
+        eel.sleep(1)
     word_chooser(text_data)
-
-    # for word in per_word:
-    #     # for word in line.split():
-    #     print(word, sep='')
-    #     count_read_words += 1
-    #     # print('Прочитано = ', count_read_words, end='')
-    #     progress = count_read_words * 100 / 50
-    #     print(int(speed), type(speed))
-    #     eel.sleep(60 / speed)
-    #     return word
-
-    # eel.call_in_python("Hello from JS")
 
     
 # if __name__ == '__main__':
@@ -61,14 +89,11 @@ def reader_python():
 
 eel.start('index.html', size = (750, 600), mode = "firefox")
 
-# паузы предложений и абзацев
-# на старт, внимание, марш
-# форма
-# скорость
-# экран и размер экрана
-# открытие файла
-# размер шрифта
-# цвета фона и шрифта
-# прогресс
-# пауза/плей
-# запуск с прогресса
+# РїР°СѓР·С‹ РїСЂРµРґР»РѕР¶РµРЅРёР№ Рё Р°Р±Р·Р°С†РµРІ
+# С„РѕСЂРјР°
+# СЌРєСЂР°РЅ Рё СЂР°Р·РјРµСЂ СЌРєСЂР°РЅР°
+# СЂР°Р·РјРµСЂ С€СЂРёС„С‚Р°
+# С†РІРµС‚Р° С„РѕРЅР° Рё С€СЂРёС„С‚Р°
+# РїСЂРѕРіСЂРµСЃСЃ
+# РїР°СѓР·Р°/РїР»РµР№
+# Р·Р°РїСѓСЃРє СЃ РїСЂРѕРіСЂРµСЃСЃР°

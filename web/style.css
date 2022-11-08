@@ -63,3 +63,13 @@ body {
     color: #fff;
     background-color: #2285f5;
 }
+
+#progress_bar {
+    text-align: center;
+    background-color: #161d24;
+    width: 800px;
+    outline: 0;
+    border: 0;
+    /* border: 0px solid #2484f2; */
+    font-size: 0.2em;
+}
