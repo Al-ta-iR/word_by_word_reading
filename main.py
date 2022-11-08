@@ -10,6 +10,7 @@ eel.init('web')
 speed = 400
 progress = 0
 text_data = ''
+flag = 1
 
 # @eel.expose
 # def selectFolder():
@@ -34,11 +35,16 @@ def open_file():
         open_file()
 
 @eel.expose
-def play_reading(flag):
-    if flag == 1:
-        return 1
+def play_reading(flag_play):
+    if flag_play:
+        global flag
+        flag = 1
+        print(flag)
     else:
-        eel.sleep(1)
+        global flag
+        flag = 0
+        print(flag)
+
 
 @eel.expose
 def set_values(speed_val=100, progress_val=0):
@@ -49,7 +55,7 @@ def set_values(speed_val=100, progress_val=0):
         progress_val = 0
     global speed, progress
     speed = 60 / int(speed_val)
-    progress = int(progress_val)
+    progress = int(float(progress_val))
     open_file()
     # text_word_counter = len(text_data)
     reader_python()
@@ -59,19 +65,23 @@ def word_chooser(text, speed_ratio=1):
     global speed, progress, text_data
     text_words_counter = len(text)
     start_progress = int(progress / 100 * text_words_counter)
-    for word_id in range(start_progress, text_words_counter):
+    if flag:
+        for word_id in range(start_progress, text_words_counter):
 
-        latest_symbol = text[word_id][-1]
-        if latest_symbol in '.!?;':
+            latest_symbol = text[word_id][-1]
+            if latest_symbol in '.!?;':
+                eel.showWords(text[word_id])
+                eel.sleep(speed * 1.8 * speed_ratio * 0.88)
+                progress = 100 / text_words_counter * (word_id + 1)
+                eel.showProgress(round(progress, 1))
+                continue
             eel.showWords(text[word_id])
-            eel.sleep(speed * 1.8 * speed_ratio * 0.88)
-            progress = 100 / text_words_counter * (word_id + 1)
-            eel.showProgress(round(progress, 1))
-            continue
-        eel.showWords(text[word_id])
-        eel.sleep(speed)
-        eel.showWords('') # данные 2 строки добавлены для мерцания слов при смене
-        eel.sleep(speed * 0.12)
+            eel.sleep(speed)
+            eel.showWords('') # данные 2 строки добавлены для мерцания слов при смене
+            eel.sleep(speed * 0.12)
+    else:
+        eel.sleep(1)
+        eel.playReading()
 
 @eel.expose
 def reader_python():

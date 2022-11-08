@@ -15,6 +15,7 @@ async function call_in_python() {
     const progress = document.getElementById('progress').value;
     const word = await eel.set_values(speed, progress)();
     document.getElementById('word').innerHTML = word;
+    playReading()
     // console.log(word)
 }
 
@@ -32,6 +33,7 @@ function showProgress(progress){
 }
 
 async function setFlag(){
+    document.querySelector("#play_btn")
     if (flagPlay == 1){
         flagPlay = 0
     } else {
@@ -39,10 +41,11 @@ async function setFlag(){
     }
 }
 
-// eel.expose(playReading);
-// async function playReading(){
-//     pass
-// }
+eel.expose(playReading);
+async function playReading(){
+    eel.play_reading(flagPlay)();
+    console.log(flagPlay)
+}
 
 // async function select(){
 //     eel.selectFolder();
