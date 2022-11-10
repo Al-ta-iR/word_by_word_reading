@@ -3,7 +3,9 @@ let flagPlay = 0
 function main() {
     const playBtn = document.querySelector("#play_btn")
     playBtn.addEventListener(('click'), () => {
+        console.log('set1', flagPlay);
         setFlag();
+        console.log('set2', flagPlay);
         if (flagPlay == 0) {
             call_in_python();
             console.log('main 1', flagPlay);
@@ -20,7 +22,7 @@ main()
 async function call_in_python() {
     const speed = document.getElementById('speed').value;
     const progress = document.getElementById('progress').value;
-    const word = await eel.set_values(speed, progress)();
+    await eel.set_values(speed, progress)();
     // console.log(word)
 }
 
@@ -28,14 +30,12 @@ eel.expose(showWords);
 function showWords(word){
     playReading()
     document.getElementById('word').value = word;
-    // console.log(word);
 }
 
 eel.expose(showProgress);
 function showProgress(progress){
     document.getElementById('progress').value = progress;
     document.getElementById('progress_bar').value = progress;
-    // console.log(word);
 }
 
 function setFlag(){
